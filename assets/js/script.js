@@ -54,3 +54,32 @@ function createTimeblockRow(hourId) {
     return timeblock;
 }
 
+function createCol(element, colSize) {
+    var col = document.createElement('div');
+    col.classList.add(col-$(colSize), p-0);
+    col.appendChild(element);
+    return col;
+}
+
+function createHourDiv(hour) {
+    var hourCol = document.createElement('div');
+    hourCol.classList.add('hour');
+    hourCol.textContent = formatHour(hour);
+    return hourCol;
+}
+
+function formatHour(hour) {
+    var hourString = String(hour);
+    return moment(hourString, 'h').format('hA');
+}
+
+function createTextArea(hour, currentHour) {
+    var textArea = document.createElement('textarea');
+    textArea.classList.add(getTextAreaBackgroundClass(hour, currentHour));
+    return textArea;
+}
+
+function getTextAreaBackgroundClass(hour, currentHour) {
+    return hour < currentHour ? 'past': hour === currentHour ? 'present' : 'future';
+}
+
